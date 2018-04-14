@@ -33,6 +33,6 @@ func triggerFunc(newMsg Message, CID string) {
 	updateWorker.NewMessage(*old)
 }
 
-func main() {
-	http.HandleFunc("/newMessage", HandleNewMessage)
-}
+// func main() {
+// 	http.HandleFunc("/newMessage", HandleNewMessage)
+// }
