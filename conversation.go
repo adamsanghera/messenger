@@ -34,6 +34,19 @@ type Conversation struct {
 // Otherwise, it prepends to the LL and kicks off the last.
 func (conv *Conversation) AddNewMessage(msg *Message) (oldMsg *Message) {
 
+	if conv.cacheSize == 0 {
+		conv.msgListHead = &MessageMeta{
+			head: nil,
+			tail: nil,
+			msg:  msg,
+		}
+
+		conv.cacheSize++
+
+		conv.msgListLast = conv.msgListHead
+		return nil
+	}
+
 	if conv.cacheSize < conv.maxCache {
 		oldMsg = nil
 
