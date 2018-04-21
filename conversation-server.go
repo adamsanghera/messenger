@@ -11,12 +11,7 @@ import (
 )
 
 type Server struct {
-	ledger map[int32]convpb.Conversation
-}
-
-func (s *Server) GetConversations(ctx context.Context, in *convpb.CIDs) (*convpb.Conversations, error) {
-	var ret *convpb.Conversations
-	return ret, nil
+	ledger map[int32]Conversation
 }
 
 func (s *Server) GetConversationsView(ctx context.Context, in *convpb.CIDs) (*convpb.ConvViewsList, error) {
