@@ -19,13 +19,21 @@ func main() {
 
 	convManagerClient := convpb.NewConversationManagerClient(conn)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	sum := int64(0)
+	count := int64(0)
+	for {
+		count++
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
 
-	_, err = convManagerClient.SortCIDs(ctx, &convpb.CIDs{})
-	if err != nil {
-		panic(err)
+		start := time.Now()
+		_, err = convManagerClient.SortCIDs(ctx, &convpb.CIDs{})
+		if err != nil {
+			panic(err)
+		}
+		rt := time.Since(start).Nanoseconds()
+		sum += rt
+		log.Printf("Round trip in %d nanoseconds", rt)
+		log.Printf("Average round trip has been %d nanoseconds", sum/count)
 	}
-
-	log.Printf("Got the reply!!\n")
 }

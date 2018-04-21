@@ -8,7 +8,7 @@ syntax="proto3";
 // SetX --> Command.  Only return error messages.
 
 service ConversationManager {
-  rpc sortCIDs(CIDs) returns (ConvViewsList);
+  rpc getConversationsView(CIDs) returns (ConvViewsList);
   rpc newConversation(UIDs) returns (Empty);
   rpc newMessage(Message) returns (Empty);
   rpc deleteConversation(CID) returns (Empty);
@@ -33,18 +33,22 @@ message UIDs {
   repeated UID UIDs = 1;
 }
 
+message User {
+  string Name = 1;
+  UID ID = 2;
+}
+
 message Message {
-  string Author = 1; // Do we really need this
-  UID AuthorID = 2;
-  string Content = 3;
-  int64 Timestamp = 4;
+  User Author = 1;
+  string Content = 2;
+  int64 Timestamp = 3;
 }
 
 message ConvView {
   string Content = 1;
   string Author = 2;
   int64 Timestamp = 3;
-  int32 CID = 4;
+  CID CID = 4;
 }
 
 message ConvViewsList {

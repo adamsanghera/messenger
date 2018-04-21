@@ -11,13 +11,16 @@ import (
 )
 
 type Server struct {
+	ledger map[int32]convpb.Conversation
 }
 
-func (s *Server) SortCIDs(context.Context, *convpb.CIDs) (*convpb.ConvViewsList, error) {
-	ret := &convpb.ConvViewsList{}
+func (s *Server) GetConversations(ctx context.Context, in *convpb.CIDs) (*convpb.Conversations, error) {
+	var ret *convpb.Conversations
+	return ret, nil
+}
 
-	log.Printf("Sorting CIDs...\n")
-
+func (s *Server) GetConversationsView(ctx context.Context, in *convpb.CIDs) (*convpb.ConvViewsList, error) {
+	var ret *convpb.ConvViewsList
 	return ret, nil
 }
 
