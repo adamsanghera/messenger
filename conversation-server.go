@@ -44,9 +44,9 @@ func (s *Server) DeleteHistoryOf(context.Context, *convpb.UID) (*convpb.Empty, e
 func main() {
 	var srv Server
 
-	addr := "127.0.0.1:5000"
+	addr := ":5000"
 
-	lis, err := net.Listen("tcp", "127.0.0.1:5000")
+	lis, err := net.Listen("tcp", ":5000")
 	if err != nil {
 		panic(err)
 	}
