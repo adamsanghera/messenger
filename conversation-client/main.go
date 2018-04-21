@@ -5,12 +5,12 @@ import (
 	"log"
 	"time"
 
-	convpb "../protobufs/dist/conversation"
+	convpb "github.com/adamsanghera/messenger/protobufs/dist/conversation"
 	"google.golang.org/grpc"
 )
 
 func main() {
-	convManagerAddr := "127.0.0.1:5000"
+	convManagerAddr := "172.104.239.167:5000"
 
 	conn, err := grpc.Dial(convManagerAddr, grpc.WithInsecure())
 	if err != nil {
